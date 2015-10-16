@@ -157,6 +157,28 @@ NoteMap.prototype.drawCell = function(x, y, highlight)
    
    var colour = (key != -1) ? ((((((this.rootKey * key) / 12 ) / this.rootKey) % 1 ) == 0) ? Colour.AMBER_FULL: (this.keyIsBlack(key) ? black : white)) : Colour.OFF;
    
+   colour = Colour.OFF;
+   // println("ROOT: " + this.rootKey);
+   // println("KEY: " + key);
+   var calc = Math.max(this.rootKey, key) - Math.min(this.rootKey, key);
+   // println("Calc: " + calc);
+   // if (  (((this.rootKey * key) / 12) / this.rootKey) % 1 == 0          ) {
+   if (  calc % 12 == 0          ) {
+
+      colour = Colour.AMBER_FULL; 
+   } else {
+    if (this.keyIsBlack(key)) {
+      colour = black;
+    } else {
+      colour = white;
+    }
+   }
+
+
+
+
+
+   
    if (noteOn[key])
    {
       colour = Colour.GREEN_FULL;
